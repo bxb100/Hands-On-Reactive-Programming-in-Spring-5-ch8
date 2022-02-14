@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    function:
+      definition: getMessagesStream;getLatestMessages
+    stream:
+      function:
+        bindings:
+          getMessagesStream-out-0: output
+          getLatestMessages-out-0: output
+      bindings:
+        output:
+          destination: Messages
+          producer:
+            requiredGroups:
+              - statistic
+              - ui
+  rabbitmq:
+    addresses: localhost:5672
+    username: guest
+    password: guest
+
+gitter:
+  auth:
+    token: ${GITTER_TOKEN}
+  api:
+    endpoint: https://api.gitter.im/
+    messages-resource: rooms/${GITTER_ROOM_ID}/chatMessages
+  stream:
+    endpoint: https://stream.gitter.im/
+    messages-resource: rooms/${GITTER_ROOM_ID}/chatMessages
+

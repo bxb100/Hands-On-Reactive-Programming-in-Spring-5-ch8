@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        updateStatistic-in-0:
+          destination: Messages
+          group: statistic
+        updateStatistic-out-0:
+          destination: Statistic
+          producer:
+            requiredGroups: ui
+  rabbitmq:
+    addresses: localhost:5672
+    username: guest
+    password: guest
+  data:
+    mongodb:
+      uri: mongodb://localhost/gitter
+server:
+  port: 8081

@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    stream:
+      function:
+        bindings:
+          listen-in-0: messages
+          listen-in-1: statistic
+      bindings:
+        messages:
+          destination: Messages
+          group: ui
+        statistic:
+          destination: Statistic
+          group: ui
+  rabbitmq:
+    addresses: localhost:5672
+    username: guest
+    password: guest
+
+server:
+  port: 8082
